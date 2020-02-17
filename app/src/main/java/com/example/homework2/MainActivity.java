@@ -9,18 +9,18 @@ import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import static java.lang.Float.NaN;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView showAverage, showGPA;
     EditText grade1, grade2, grade3, grade4, grade5, grade6;
     Button button;
-    View top, middle, bottom;
-    float sum, averageGrade;
+    LinearLayout top, middle, bottom;
+    float sum = 0;
+    float averageGrade;
     int numOfCourse = 6;
 
     @Override
@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         middle = findViewById(R.id.middle);
         bottom = findViewById(R.id.bottom);
 
-        grade1.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
-        grade2.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
-        grade3.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
-        grade4.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
-        grade5.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
-        grade6.setFilters(new InputFilter[] {new MinMaxFilter("0", "100")});
+        grade1.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
+        grade2.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
+        grade3.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
+        grade4.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
+        grade5.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
+        grade6.setFilters(new InputFilter[]{new MinMaxFilter("0", "100"), new InputFilter.LengthFilter(5)});
 
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -59,23 +59,22 @@ public class MainActivity extends AppCompatActivity {
                     for (String s : grade) {
                         if (!s.equals("0")) {
                             sum += Float.valueOf(s);
-                        }else{
+                        } else {
                             numOfCourse--;
                         }
                     }
-                }catch (Exception e){
-                    Toast.makeText(MainActivity.this, R.string.Fill, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, "Enter all feilds, Enter Zero if absent", Toast.LENGTH_SHORT).show();
                     sum = 0;
                     showAverage.setText(R.string.DefaultGrade);
                     showGPA.setText(R.string.DefaultGPA);
                     return;
                 }
 
-                
                 averageGrade = sum / numOfCourse;
-                if (averageGrade == NaN){
+
+                if (numOfCourse == 0) {
                     Toast.makeText(MainActivity.this, R.string.Doge, Toast.LENGTH_SHORT).show();
-                    middle.setBackgroundResource(R.drawable.doge);
                     showGPA.setText(R.string.Doge);
                     showAverage.setText(R.string.Doge);
                     button.setText(R.string.Doge);
@@ -86,9 +85,8 @@ public class MainActivity extends AppCompatActivity {
                             recreate();
                         }
                     });
-                }
-
-                if (averageGrade >= 80 && averageGrade <= 100){
+                    return;
+                } else if (averageGrade >= 80 && averageGrade <= 100) {
                     top.setBackgroundResource(R.color.colorGreen);
                     bottom.setBackgroundResource(R.color.colorGreen);
                     middle.setBackgroundResource(R.drawable.stroke_green);
@@ -102,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                             recreate();
                         }
                     });
-                }
-                else if (averageGrade >= 61 && averageGrade <80){
+                } else if (averageGrade >= 61 && averageGrade < 80) {
                     top.setBackgroundResource(R.color.colorYellow);
                     bottom.setBackgroundResource(R.color.colorYellow);
                     middle.setBackgroundResource(R.drawable.stroke_yellow);
@@ -117,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             recreate();
                         }
                     });
-                }
-                else {
+                } else {
                     top.setBackgroundResource(R.color.colorRed);
                     bottom.setBackgroundResource(R.color.colorRed);
                     middle.setBackgroundResource(R.drawable.stroke_red);
@@ -133,18 +129,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-                if (averageGrade >= 90 && averageGrade <= 100){
+                if (averageGrade >= 90 && averageGrade <= 100) {
                     showGPA.setText(R.string.A);
-                }
-                else if (averageGrade >= 80 && averageGrade <90){
+                } else if (averageGrade >= 80 && averageGrade < 90) {
                     showGPA.setText(R.string.B);
-                }
-                else if (averageGrade >= 70 && averageGrade <80){
+                } else if (averageGrade >= 70 && averageGrade < 80) {
                     showGPA.setText(R.string.C);
-                }else if (averageGrade >= 60 && averageGrade <70){
+                } else if (averageGrade >= 60 && averageGrade < 70) {
                     showGPA.setText(R.string.D);
-                }
-                else {
+                } else {
                     showGPA.setText(R.string.F);
                 }
                 showAverage.setText(Float.toString(averageGrade));
@@ -155,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void clean(){
+    public void clean() {
         grade1.setText("");
         grade2.setText("");
         grade3.setText("");
@@ -172,15 +165,18 @@ public class MainActivity extends AppCompatActivity {
             this.Min = Float.parseFloat(minValue);
             this.Max = Float.parseFloat(maxValue);
         }
+
         @Override
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
             try {
                 Float input = Float.parseFloat(dest.toString() + source.toString());
                 if (isInRange(Min, Max, input))
                     return null;
-            } catch (NumberFormatException nfe) { }
+            } catch (NumberFormatException nfe) {
+            }
             return "";
         }
+
         private boolean isInRange(float a, float b, float c) {
             return c <= b && c >= a;
         }

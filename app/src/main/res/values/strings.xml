@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GPA_xuy23_Calculator</string>
+    <string name="app_name">GPA_50005644_ Calculator</string>
     <string name="Title">GPA Calculator</string>
     <string name="Rule">Enter \"0\" if no grade</string>
     <string name="CurrentGrade">Current Grade:</string>
@@ -7,30 +7,30 @@
     <string name="CurrentGPA">Your GPA is:</string>
     <string name="DefaultGPA">Pending</string>
     <string name="A">\" A \"</string>
-    <string name="Keep">Great job</string>
+    <string name="Keep">Great!</string>
     <string name="B">\" B \"</string>
-    <string name="AlmostA">Move on</string>
+    <string name="AlmostA">Well Done</string>
     <string name="C">\" C \"</string>
-    <string name="WorkHard">Work Hard</string>
+    <string name="WorkHard">Could do Better</string>
     <string name="D">\" D \"</string>
-    <string name="F">\" F \"</string>
+    <string name="F">\" Failed \"</string>
     <string name="Grade">Grade</string>
     <string name="One">#1</string>
-    <string name="Course1">Course 1</string>
+    <string name="Course1"><b>Course 1</b></string>
     <string name="Two">#2</string>
-    <string name="Course2">Course 2</string>
+    <string name="Course2"><b>Course 2</b></string>
     <string name="Three">#3</string>
-    <string name="Course3">Course 3</string>
+    <string name="Course3"><b>Course 3</b></string>
     <string name="Four">#4</string>
-    <string name="Course4">Course 4</string>
+    <string name="Course4"><b>Course 4</b></string>
     <string name="Five">#5</string>
-    <string name="Course5">Course 5</string>
+    <string name="Course5"><b>Course 5</b></string>
     <string name="Six">#6</string>
-    <string name="Course6">Course 6</string>
-    <string name="Calculate">Calculate GPA</string>
+    <string name="Course6"><b>Course 6</b></string>
+    <string name="Calculate">Compute GPA</string>
     <string name="Clear">Clear All</string>
     <string name="Fill">You need to fill all grades, enter \"0\" if no grade.</string>
     <string name="AboveGrade">The maximum grade is 100</string>
-    <string name="Doge">Dogeeeeeeeee</string>
+    <string name="Doge">Zero</string>
 
 </resources>

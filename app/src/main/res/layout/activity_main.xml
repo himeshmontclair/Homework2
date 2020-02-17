@@ -10,7 +10,7 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorTianYi"
+        android:background="#C7FF8F"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -19,13 +19,13 @@
             android:layout_height="wrap_content"
             android:text="@string/Title"
             android:textAlignment="center"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Rule"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,16 +45,16 @@
                     android:layout_height="match_parent"
                     android:text="@string/CurrentGrade"
                     android:textAlignment="center"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/showAverage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:text="@string/DefaultGrade"
                     android:textAlignment="center"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -69,16 +69,16 @@
                     android:layout_height="match_parent"
                     android:text="@string/CurrentGPA"
                     android:textAlignment="center"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/showGPA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:text="@string/DefaultGPA"
                     android:textAlignment="center"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -280,16 +280,15 @@
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:padding="30dp"
-        android:background="@color/colorTianYi">
+        android:background="#009688"
+        android:padding="30dp">
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Calculate"
-            android:background="@drawable/button_default"
-            />
+            android:background="@drawable/stroke_red"
+            android:text="@string/Calculate" />
 
     </LinearLayout>
 
